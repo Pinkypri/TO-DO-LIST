@@ -7,6 +7,9 @@ const [items, setitems] = useState([])
 
 useEffect(() => {
 const items=localStorage.getItem("items");
+if(!items){
+  return items
+}
 setitems(JSON.parse(items));
 }, []);
 
@@ -36,7 +39,7 @@ const deleteItem=(id)=>{
       <div>
         <ul>
           {
-            items.map((item,index)=>{
+           items.map((item,index)=>{
              return <ToDoItem key={index} text={item} index={index}
              onClick={()=>deleteItem(index)}/>
             })
